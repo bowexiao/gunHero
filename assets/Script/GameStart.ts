@@ -1,4 +1,5 @@
 import Global from "./Global";
+import { SCENENAME } from "./mgr/SceneMgr";
 
 const {ccclass, property} = cc._decorator;
 
@@ -28,7 +29,7 @@ export default class GameStart extends cc.Component {
     }
 
     onBtnStart(){
-        Global.sceneMgr.loadScene('gameScene');
+        Global.sceneMgr.loadScene(SCENENAME.GAMESCENE);
     }
 
     onHeroSelect(event,data){

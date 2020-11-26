@@ -1,5 +1,10 @@
 import Global from "../Global";
 
+export enum SCENENAME {
+    BEGIN ='start',
+    GAMESCENE ='gameScene'
+}
+
 export class SceneMgr {
     public loadScene(sceneName){
         cc.director.preloadScene(sceneName,()=>{
