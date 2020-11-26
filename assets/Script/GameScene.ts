@@ -30,7 +30,61 @@ export default class GameScene extends cc.Component {
     })
     floor_parent:cc.Node = null;
 
-    
+    @property({
+        type:cc.Node,
+        tooltip:'远房子0'
+    })
+    far_House0:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'远房子1'
+    })
+    far_House1:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'jin房子0'
+    })
+    near_House0:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'jin房子1'
+    })
+    near_House1:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'远地板0'
+    })
+    far_Floor0:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'远地板1'
+    })
+    far_Floor1:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'远路0'
+    })
+    far_Way0:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'远路1'
+    })
+    far_Way1:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'分数'
+    })
+    score:cc.Node = null;
+
+    roalScore = 0;
     winSizeW:number = 0
     // LIFE-CYCLE CALLBACKS:
 
@@ -50,6 +104,20 @@ export default class GameScene extends cc.Component {
             this.moon.active = false;
             Global.sceneMgr.updateSprite('imgRes/sun' + randomStyle,this.sun);
         }
+
+        Global.sceneMgr.updateSprite('imgRes/house' + randomStyle,this.far_House0);
+        Global.sceneMgr.updateSprite('imgRes/house' + randomStyle,this.far_House1);
+
+        Global.sceneMgr.updateSprite('imgRes/houshSmall' + randomStyle,this.near_House0);
+        Global.sceneMgr.updateSprite('imgRes/houshSmall' + randomStyle,this.near_House1);
+
+        Global.sceneMgr.updateSprite('imgRes/floor' + randomStyle,this.far_Floor0);
+        Global.sceneMgr.updateSprite('imgRes/floor' + randomStyle,this.far_Floor1);
+
+        Global.sceneMgr.updateSprite('imgRes/gameFloor' + randomStyle,this.far_Way0);
+        Global.sceneMgr.updateSprite('imgRes/gameFloor' + randomStyle,this.far_Way1);
+
+        this.score.getComponent(cc.Label).string = '分数:' + this.roalScore;
 
         this.cloudAction(randomStyle);
     }
