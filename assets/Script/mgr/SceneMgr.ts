@@ -20,7 +20,6 @@ export class SceneMgr {
                 cc.log('sprite is not fond');
                 return;
             }
-
             node.getComponent(cc.Sprite).spriteFrame = sprite;
         })
     }

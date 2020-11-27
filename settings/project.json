@@ -1,11 +1,69 @@
 {
   "start-scene": "ec7bcddc-95d5-45b5-9851-74c80e03a333",
   "group-list": [
-    "default"
+    "default",
+    "floor",
+    "column",
+    "enemy",
+    "enemyBullet",
+    "hero",
+    "heroBullet"
   ],
   "collision-matrix": [
     [
       true
+    ],
+    [
+      false,
+      false,
+      null,
+      null,
+      true,
+      null,
+      true
+    ],
+    [
+      false,
+      false,
+      false,
+      null,
+      null,
+      null,
+      true
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      null,
+      null,
+      true
+    ],
+    [
+      false,
+      true,
+      false,
+      false,
+      false,
+      true
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    [
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false
     ]
   ],
   "excluded-modules": [],
