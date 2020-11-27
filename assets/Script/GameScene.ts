@@ -84,6 +84,85 @@ export default class GameScene extends cc.Component {
     })
     score:cc.Node = null;
 
+    @property({
+        type:cc.Node,
+        tooltip:'英雄'
+    })
+    heroNode:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'射线'
+    })
+    shootLine:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'子弹'
+    })
+    myBullet:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'英雄'
+    })
+    myHero:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'枪'
+    })
+    myGun:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'特效'
+    })
+    shieldImg:cc.Node = null;
+
+    @property({
+        type:cc.ProgressBar,
+        tooltip:'血条'
+    })
+    bloodBar:cc.ProgressBar = null;
+
+    @property({
+        type:cc.ParticleSystem,
+        tooltip:'血条'
+    })
+    heroDieParticle:cc.ParticleSystem  = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'结束面板'
+    })
+    Panel_end:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'最高分数'
+    })
+    bestScore:cc.Node = null;
+
+    @property({
+        type:cc.Node,
+        tooltip:'本局分数'
+    })
+    curScore:cc.Node = null;
+
+    @property({
+        type:cc.Prefab,
+        tooltip:'子弹预制体'
+    })
+    myBullerPrefab:cc.Prefab[] = [];
+
+    @property({
+        type:cc.Prefab,
+        tooltip:'敌人'
+    })
+    enemyPrefab:cc.Prefab = null;
+
+
     roalScore = 0;
     winSizeW:number = 0
     // LIFE-CYCLE CALLBACKS:
