@@ -181,7 +181,7 @@ export default class GameScene extends cc.Component {
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
-        cc.director.getPhysicsManager().gravity = cc.v2(0.-640);
+        cc.director.getPhysicsManager().gravity = cc.v2(0,-640);
     }
 
     start () {
@@ -212,7 +212,7 @@ export default class GameScene extends cc.Component {
         Global.sceneMgr.updateSprite('imgRes/gameFloor' + randomStyle,this.far_Way1);
 
         this.far_Way0.zIndex = 100;
-        this.far_Way0.zIndex = 101;
+        this.far_Way1.zIndex = 101;
 
         this.score.getComponent(cc.Label).string = '分数:' + this.roalScore;
 
@@ -255,22 +255,22 @@ export default class GameScene extends cc.Component {
         let y = x * Math.tan(Math.abs(this._curAngle) * (Math.PI / 180));
         this._bulletNode.getComponent(cc.RigidBody).applyForceToCenter(cc.v2(x,y),true);
 
-        let curPos:cc.Vec2 = this._bulletNode.getPosition();
+        let curPos:cc.Vec2 = this._bulletNode.position;
         let lastPos:cc.Vec2 = curPos;
 
         this._bulletFun = ()=>{
-            curPos = this._bulletNode.getPosition();
+            curPos = this._bulletNode.position;
 
-            let lenX = curPos.x - lastPos.x;
+            let LenX = curPos.x - lastPos.x;
             let LenY = 0;
             let r = 0;
             //move up
             if(curPos.y < lastPos.y){
                 LenY = curPos.y - lastPos.y;
-                r = Math.atan2(LenY,lenX) * 180 / Math.PI;
+                r = Math.atan2(LenY,LenX) * 180 / Math.PI;
             }else{ //move down
                 LenY = lastPos.y - curPos.y;
-                r = -1 * Math.atan2(LenY,lenX) * 180 / Math.PI;
+                r = -1 * Math.atan2(LenY,LenX) * 180 / Math.PI;
             }
 
             lastPos = curPos;
@@ -318,14 +318,20 @@ export default class GameScene extends cc.Component {
             //hit on the enemy
             if((bodyGroup0 == GROUP.HEROBULLET && bodyGroup1 == GROUP.ENEMY)
             ||(bodyGroup0 == GROUP.ENEMY && bodyGroup1 == GROUP.HEROBULLET)){
+                
                 this._bulletNode.destroy();
                 this._bulletNode = null;
                 
+                cc.log('-----------------------')
+
                 this.upDateScore();
                 this.myHeroAction(true);
                 this.gameBGAction();
                 this.enemyNode.getComponent(Enemy).clounmMove();
             }
+
+            this._curAngle = 0;
+            this.myGun.angle = 0;
         })
     }
 
@@ -403,10 +409,10 @@ export default class GameScene extends cc.Component {
                     Global.audioMgr.playEffect('sound/walk');
                 }
 
-                let px1 = this.far_Way0.x - 4;
+                let px1 = this.far_Way0.x;
                 this.far_Way0.position = cc.v2(px1,this.far_Way0.y);
 
-                let px2 = this.far_Way1.x - 4;
+                let px2 = this.far_Way1.x;
                 this.far_Way1.position = cc.v2(px2,this.far_Way1.y);
 
                 if(px1 <= - nfW - cc.winSize.width / 2){
@@ -421,11 +427,13 @@ export default class GameScene extends cc.Component {
             let seq = cc.sequence(deTime,callFunc);
             this.far_Way0.runAction(seq);
         }
+        this.far_Way0.zIndex = 100;
+        this.far_Way1.zIndex = 101;
     }
     
     private upDateScore(){
         this.roalScore ++;
-        this.curScore.getComponent(cc.Label).string = '分数:' + this.roalScore;
+        this.score.getComponent(cc.Label).string = '分数:' + this.roalScore;
         Global.audioMgr.playEffect('sound/addScore');
     }
 
@@ -560,11 +568,11 @@ export default class GameScene extends cc.Component {
         }else{
             this.bestScore.getComponent(cc.Label).string = bestScore + '';
         }
-        this.score.getComponent(cc.Label).string = this.roalScore + '';
+        this.curScore.getComponent(cc.Label).string = this.roalScore + '';
     }
 
     private myHeroDie(){
-        this.heroDieParticle.active = true;
+        this.heroDieParticle.node.active = true;
         this.heroDieParticle.stopSystem();
         this.heroDieParticle.resetSystem();
         this.heroNode.active = false;

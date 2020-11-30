@@ -120,6 +120,7 @@ export default class Enemy extends cc.Component {
         })
 
         let seq = cc.sequence(moveTo,callFunc);
+        this.bullet.runAction(seq);
     }
 
     //enemy die

@@ -22,7 +22,7 @@ export default class Contact extends cc.Component {
 
     private contactEvent(selfCollider,otherCollider){
         if(this.callBack){
-            this.callBack();
+            this.callBack(selfCollider,otherCollider);
         }
     }
 
