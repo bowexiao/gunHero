@@ -1,7 +1,7 @@
 {
   "title": "LittleGame",
   "packageName": "",
-  "startScene": "240f5b30-c9c2-462b-8a40-3bbd6217b9e6",
+  "startScene": "ec7bcddc-95d5-45b5-9851-74c80e03a333",
   "excludeScenes": [],
   "includeSDKBox": false,
   "orientation": {
@@ -21,7 +21,7 @@
   "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
-    "packageName": ""
+    "packageName": "com.fireball.LittleGame"
   },
   "ios": {
     "packageName": ""

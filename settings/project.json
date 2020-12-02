@@ -66,7 +66,14 @@
       false
     ]
   ],
-  "excluded-modules": [],
+  "excluded-modules": [
+    "Spine Skeleton",
+    "TiledMap",
+    "VideoPlayer",
+    "WebView",
+    "3D",
+    "3D Primitive"
+  ],
   "last-module-event-record-time": 1606705658063,
   "design-resolution-width": 960,
   "design-resolution-height": 640,

@@ -17,7 +17,7 @@ export default class GameStart extends cc.Component {
     heroBtn:cc.Button[] = []
 
     start () {
-        Global.audioMgr.playBGM('sound/pveBg');
+        // Global.audioMgr.playBGM('sound/pveBg');
         let gunHeroType = parseInt(cc.sys.localStorage.getItem('Hero_Type') || 0);
 
         for (let index = 0; index < this.heroBtn.length; index++) {
@@ -26,6 +26,11 @@ export default class GameStart extends cc.Component {
         }
 
         this.heroBtn[gunHeroType].interactable = false;
+    }
+
+    anZhuoMetherd(){
+        let JavaClassName: string = 'org/cocos2dx/javascript/';
+        jsb.reflection.callStaticMethod(JavaClassName + 'AppActivity','getName','()V');
     }
 
     onBtnStart(){
