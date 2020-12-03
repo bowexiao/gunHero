@@ -29,6 +29,8 @@ export default class GameStart extends cc.Component {
     }
 
     anZhuoMetherd(){
+        Global.sceneMgr.loadScene(SCENENAME.MENU);
+        return;
         let JavaClassName: string = 'org/cocos2dx/javascript/';
         jsb.reflection.callStaticMethod(JavaClassName + 'AppActivity','getName','()V');
     }
