@@ -10,7 +10,9 @@ export default class Meun extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {}
+    onLoad () {
+        // Global.sceneMgr.adaptScene(this.node);
+    }
 
     start () {
 

@@ -8,13 +8,17 @@ export default class GameStart extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {}
+    
 
     @property({
         type:cc.Button,
         tooltip:'按钮'
     })
     heroBtn:cc.Button[] = []
+
+    onLoad () {
+        Global.sceneMgr.adaptScene(this.node);
+    }
 
     start () {
         // Global.audioMgr.playBGM('sound/pveBg');

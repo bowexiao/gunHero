@@ -9,43 +9,88 @@ export enum SCENENAME {
 }
 
 export class SceneMgr {
+
+    private Origntation = false;
+
     public loadScene(sceneName){
         let JavaClassName: string = 'org/cocos2dx/javascript/';
-        let Origntation = true;
+        
         if(sceneName == SCENENAME.ADVENTUREHOME){
-            Origntation = false
+            this.Origntation = false
         }else if(sceneName == SCENENAME.BEGIN || sceneName == SCENENAME.MENU){
-            Origntation = true;
+            this.Origntation = true;
         }
-        jsb.reflection.callStaticMethod(JavaClassName + 'AppActivity','changeOrigntationH','(Z)V',Origntation);
 
-        let frameSize = cc.view.getFrameSize();
-        let canvas = cc.director.getScene().getChildByName('Canvas').getComponent(cc.Canvas);
+        if(cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID){
+            let frameSize = cc.view.getFrameSize();
+            let canvas = cc.director.getScene().getChildByName('Canvas').getComponent(cc.Canvas);
+            jsb.reflection.callStaticMethod(JavaClassName + 'AppActivity','changeOrigntationH','(Z)V',this.Origntation);
+            
+            if(this.Origntation){
+                cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
+                if(frameSize.height > frameSize.width){
+                    cc.view.setFrameSize(frameSize.height,frameSize.width);
+                }
 
-        if(Origntation){
-            cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
-            if(frameSize.height > frameSize.width){
-                cc.view.setFrameSize(frameSize.height,frameSize.width);
+                canvas.designResolution = cc.size(960,640);
+                frameSize = cc.view.getFrameSize();
+            }else{
+                cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
+                if(frameSize.width > frameSize.height){
+                    cc.view.setFrameSize(frameSize.height,frameSize.width);
+                }
+
+                canvas.designResolution = cc.size(720,1370);
+                frameSize = cc.view.getFrameSize();
             }
-
-            canvas.designResolution = cc.size(1334,750);
-            frameSize = cc.view.getFrameSize();
+            
         }else{
-            cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
-            if(frameSize.width > frameSize.height){
-                cc.view.setFrameSize(frameSize.height,frameSize.width);
-            }
+            let frameSize = cc.view.getFrameSize();
+            let canvas = cc.director.getScene().getChildByName('Canvas').getComponent(cc.Canvas);
+            
+            if(this.Origntation){
+                cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
+                if(frameSize.height > frameSize.width){
+                    cc.view.setFrameSize(frameSize.height,frameSize.width);
+                }
 
-            canvas.designResolution = cc.size(750,1543);
-            frameSize = cc.view.getFrameSize();
+                canvas.designResolution = cc.size(960,640);
+                frameSize = cc.view.getFrameSize();
+            }else{
+                cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
+                if(frameSize.width > frameSize.height){
+                    cc.view.setFrameSize(frameSize.height,frameSize.width);
+                }
+
+                canvas.designResolution = cc.size(720,1370);
+                frameSize = cc.view.getFrameSize();
+            }
+            
         }
+
 
         cc.director.preloadScene(sceneName,()=>{
             cc.log('SceneName=========>',sceneName)
             Global.audioMgr.stopBgmMusic();
+            
             cc.director.loadScene(sceneName);
         })
     }
+
+    adaptScene(node:cc.Node){
+        let visibleSize = cc.view.getVisibleSize();
+        let canvas = node.getComponent(cc.Canvas);
+
+        let size = cc.view.getFrameSize();
+        if(this.Origntation){
+            canvas.fitHeight = true;
+            canvas.fitWidth = true;
+        }else{
+            canvas.fitHeight = true;
+            canvas.fitWidth = true;
+        }
+    }
+
 
     public updateSprite(spritePath:string,node:cc.Node){
         cc.loader.loadRes(spritePath,cc.SpriteFrame,(err,sprite)=>{
