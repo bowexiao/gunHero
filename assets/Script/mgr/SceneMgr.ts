@@ -24,25 +24,27 @@ export class SceneMgr {
         if(cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID){
             let frameSize = cc.view.getFrameSize();
             let canvas = cc.director.getScene().getChildByName('Canvas').getComponent(cc.Canvas);
-            jsb.reflection.callStaticMethod(JavaClassName + 'AppActivity','changeOrigntationH','(Z)V',this.Origntation);
+            // jsb.reflection.callStaticMethod(JavaClassName + 'AppActivity','changeOrigntationH','(Z)V',this.Origntation);
             
-            if(this.Origntation){
-                cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
-                if(frameSize.height > frameSize.width){
-                    cc.view.setFrameSize(frameSize.height,frameSize.width);
-                }
+            // if(this.Origntation){
+            //     console.log('this.Origntation=====>',this.Origntation)
+            //     cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
+            //     if(frameSize.height > frameSize.width){
+            //         cc.view.setFrameSize(frameSize.height,frameSize.width);
+            //     }
 
-                canvas.designResolution = cc.size(960,640);
-                frameSize = cc.view.getFrameSize();
-            }else{
-                cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
-                if(frameSize.width > frameSize.height){
-                    cc.view.setFrameSize(frameSize.height,frameSize.width);
-                }
+            //     canvas.designResolution = cc.size(960,640);
+            //     frameSize = cc.view.getFrameSize();
+            // }else{
+            //     console.log('this.Origntation=====>',this.Origntation)
+            //     cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
+            //     if(frameSize.width > frameSize.height){
+            //         cc.view.setFrameSize(frameSize.height,frameSize.width);
+            //     }
 
-                canvas.designResolution = cc.size(720,1370);
-                frameSize = cc.view.getFrameSize();
-            }
+            //     canvas.designResolution = cc.size(640,960);
+            //     frameSize = cc.view.getFrameSize();
+            // }
             
         }else{
             let frameSize = cc.view.getFrameSize();
@@ -62,7 +64,7 @@ export class SceneMgr {
                     cc.view.setFrameSize(frameSize.height,frameSize.width);
                 }
 
-                canvas.designResolution = cc.size(720,1370);
+                canvas.designResolution = cc.size(640,960);
                 frameSize = cc.view.getFrameSize();
             }
             
@@ -79,16 +81,16 @@ export class SceneMgr {
 
     adaptScene(node:cc.Node){
         let visibleSize = cc.view.getVisibleSize();
-        let canvas = node.getComponent(cc.Canvas);
+        // let canvas = node.getComponent(cc.Canvas);
 
-        let size = cc.view.getFrameSize();
-        if(this.Origntation){
-            canvas.fitHeight = true;
-            canvas.fitWidth = true;
-        }else{
-            canvas.fitHeight = true;
-            canvas.fitWidth = true;
-        }
+        // let size = cc.view.getFrameSize();
+        // if(this.Origntation){
+        //     canvas.fitHeight = true;
+        //     canvas.fitWidth = true;
+        // }else{
+        //     canvas.fitHeight = true;
+        //     canvas.fitWidth = true;
+        // }
     }
 
 
