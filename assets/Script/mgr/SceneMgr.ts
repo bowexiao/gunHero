@@ -5,7 +5,8 @@ export enum SCENENAME {
     GAMESCENE ='gameScene',
     MENU ='Meun',
     ADVENTUREHOME = 'AdventureHome',
-    ADVENTUREGAME = 'AdventureGame'
+    ADVENTUREGAME = 'AdventureGame',
+    GRAVITYBAll = 'GravityBall'
 }
 
 export class SceneMgr {
@@ -73,6 +74,7 @@ export class SceneMgr {
 
         cc.director.preloadScene(sceneName,()=>{
             cc.log('SceneName=========>',sceneName)
+            console.log('SceneName=========>',sceneName)
             Global.audioMgr.stopBgmMusic();
             
             cc.director.loadScene(sceneName);

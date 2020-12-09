@@ -40,6 +40,8 @@ export default class Meun extends cc.Component {
                     Global.sceneMgr.loadScene(SCENENAME.ADVENTUREHOME);
                 }else if(event.target.name == 'gun'){
                     Global.sceneMgr.loadScene(SCENENAME.BEGIN);
+                }else if(event.target.name == 'GravityBall'){
+                    Global.sceneMgr.loadScene(SCENENAME.GRAVITYBAll);
                 }
             }
         }else{
@@ -47,6 +49,8 @@ export default class Meun extends cc.Component {
                 Global.sceneMgr.loadScene(SCENENAME.ADVENTUREHOME);
             }else if(event.target.name == 'gun'){
                 Global.sceneMgr.loadScene(SCENENAME.BEGIN);
+            }else if(event.target.name == 'GravityBall'){
+                Global.sceneMgr.loadScene(SCENENAME.GRAVITYBAll);
             }
         }
     }
