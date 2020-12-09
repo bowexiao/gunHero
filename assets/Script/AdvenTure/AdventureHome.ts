@@ -7,7 +7,7 @@ const {ccclass, property} = cc._decorator;
 export default class AdventureHome extends cc.Component {
 
     onLoad(){
-        Global.sceneMgr.adaptScene(this.node);
+        
     }
 
     onBtnClick(event){

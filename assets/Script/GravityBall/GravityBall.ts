@@ -207,6 +207,7 @@ export default class GravityBall extends cc.Component {
 
     onBtnClick(event){
         if(event.target.name == 'btnMenu'){
+            cc.director.getPhysicsManager().enabled = false;
             Global.sceneMgr.loadScene(SCENENAME.MENU);
         }
     }

@@ -21,6 +21,9 @@ export default class Meun extends cc.Component {
         //     }
         //     Global.audioMgr.playEffect(audio);
         // })
+
+        let frameSize = cc.view.getFrameSize();
+        console.log('frameSize=====11======>',JSON.stringify(frameSize))
     }
 
     onBtnClick(event){

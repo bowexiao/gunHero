@@ -180,7 +180,6 @@ export default class GameScene extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        Global.sceneMgr.adaptScene(this.node);
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2(0,-640);
     }
